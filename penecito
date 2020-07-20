@@ -1,0 +1,35 @@
+def costoTransito(minComb):
+    return ((minComb//480)*5000)
+def costoPasajero(hrsViaje,costoBase,minComb):
+    return (hrsViaje*30000)+costoBase+minComb
+def validaEntrada(num,min):
+    while num<min:
+        print("Ingrese una cantidad valida:")
+        num=int(input())
+    return num
+mjr=0
+nombre=0
+print("Cuantos vuelos va a ingresar")
+vuelos=int(input())
+for i in range(vuelos):
+    print("Ingrese nombre del vuelo:")
+    vuelo=str(input())
+    print("Ingrese horas de vuelo:")
+    horas=int(input())
+    horas= validaEntrada(horas,1)
+    print("Ingrese el costo base del vuelo:")
+    costobase=int(input())
+    costobase=validaEntrada(costobase,0)
+    print("Ingrese la cantidad de horas de espera:")
+    minComb= int(input())
+    minComb= validaEntrada(minComb,0)
+    costotr= costoTransito(minComb)
+    costofinal= costoPasajero(horas,costobase,costotr)
+    if i==0:
+        mjr=costofinal
+        nombre=vuelo
+    else:
+        if costofinal<mjr:
+            mjr=costofinal
+            nombre=vuelo
+print("La mejor oferta para usted es:",nombre,"con un valor de:",mjr)
